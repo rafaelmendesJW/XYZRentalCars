@@ -7,6 +7,6 @@ public class Main{
         //Coloca entre as aspas o nome da persistence unit
         //Se encontra no arquivo xml dentro da pasta meta-inf
         //Uma das primeiras linhas
-        Persistence.createEntityManagerFactory("")
+        Persistence.createEntityManagerFactory("");
     }
 }

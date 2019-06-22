@@ -13,8 +13,6 @@ public class ClassesDeCarro {
     private BigDecimal valorDaDiaria;
 
 
-
-
     public String getNome() {
         return nome;
     }
