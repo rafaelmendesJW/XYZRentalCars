@@ -13,9 +13,9 @@
         <properties>
             <!-- Configuring JDBC properties -->
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/rentalcarsdb?useSSL=false&amp;serverTimezone=UTC&amp;createDatabaseIfNotExist=true&amp;allowPublicKeyRetrieval=true"/>
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="pinheirom25" />
+                      value="jdbc:mysql://localhost/dbrentalcars?useSSL=false&amp;serverTimezone=UTC&amp;createDatabaseIfNotExist=true&amp;allowPublicKeyRetrieval=true"/>
+            <property name="javax.persistence.jdbc.user" value="rafael" />
+            <property name="javax.persistence.jdbc.password" value="1234" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 
 

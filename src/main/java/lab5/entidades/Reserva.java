@@ -31,7 +31,7 @@ public class Reserva {
     private Sede sedeDeLocacao;
     @ManyToOne
     @JoinColumn( name = "id_sede_devolucao", nullable = false)
-    private Sede sedeDevolucao;
+    private Sede sedeDeDevolucao;
     @ManyToOne
     @JoinColumn (name = "id_cliente", nullable = false)
     private Cliente cliente;
