@@ -61,6 +61,21 @@ public class Cliente {
         this.categoriaCnh = categoriaCnh;
     }
 
+    public boolean verifSeClienteTemReserva (){
+        for (Reserva reserva : historicoReservas) {
+            if(reserva.getSituacaoReserva() == SituacaoReserva.ativa){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean verifValidadeCnh (){
+        if(LocalDate.now().isAfter(validadeCnh)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

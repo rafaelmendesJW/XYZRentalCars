@@ -92,7 +92,7 @@ public class Reserva {
         return situacaoReserva;
     }
 
-    public void setSituacaoReserva(SituacaoReserva situacaoReserva) {
+    private void setSituacaoReserva(SituacaoReserva situacaoReserva) {
         this.situacaoReserva = situacaoReserva;
     }
 
@@ -102,6 +102,25 @@ public class Reserva {
 
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public void ativar() {
+
+        if (!cliente.verifSeClienteTemReserva()) {
+            setSituacaoReserva(SituacaoReserva.ativa);
+        }else if(!cliente.verifValidadeCnh()){
+            setSituacaoReserva(SituacaoReserva.ativa);
+        } else {
+          throw new IllegalStateException("Já tem uma reserva ativa!");
+        }
+    }
+
+    public void finalizar() {
+        setSituacaoReserva(situacaoReserva.finalizar());
+    }
+
+    public void notificarAtraso() {
+        setSituacaoReserva(situacaoReserva.notificarAtraso());
     }
 
     @Override

@@ -30,25 +30,25 @@ public class Carro {
         return placa;
     }
 
-    public void setPlaca(String placa) {
+    /*public void setPlaca(String placa) {
         this.placa = placa;
-    }
+    }*/
 
     public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(String modelo) {
+    /*public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
+    }*/
 
     public Short getAno() {
         return ano;
     }
-
+    /*
     public void setAno(Short ano) {
         this.ano = ano;
-    }
+    }*/
 
     public BigDecimal getQuilometragem() {
         return quilometragem;
@@ -64,6 +64,17 @@ public class Carro {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public void disponibilizar() {
+        situacao =  situacao.disponibilizar();
+    }
+
+    public void alugar() {
+        situacao =  situacao.alugar();
+    }
+    public void notificarForaPtOrigem() {
+        situacao =  situacao.notificarForaPtOrigem();
     }
 
     @Override
