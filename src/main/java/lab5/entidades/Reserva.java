@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-public class Reserva {
+public class Reserva implements EntidadeBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -38,6 +38,10 @@ public class Reserva {
     @ManyToOne
     @JoinColumn (name = "id_carro", nullable = false)
     private Carro carro;
+
+    public Reserva(){
+        this.setSituacaoReserva(SituacaoReserva.ativa);
+    }
 
 
     public String getNumReserva() {
@@ -92,7 +96,7 @@ public class Reserva {
         return situacaoReserva;
     }
 
-    private void setSituacaoReserva(SituacaoReserva situacaoReserva) {
+    public void setSituacaoReserva(SituacaoReserva situacaoReserva) {
         this.situacaoReserva = situacaoReserva;
     }
 
@@ -115,7 +119,11 @@ public class Reserva {
         }
     }
 
-    public void finalizar() {
+    public void finalizar(Sede sede) {
+        valorTotal = carro.getValorDiarias().multiply(new BigDecimal(qtdDeDiarias));
+        if(!sedeDeLocacao.equals(sede)) {
+            valorTotal = valorTotal .add(multa);
+        }
         setSituacaoReserva(situacaoReserva.finalizar());
     }
 
@@ -128,12 +136,66 @@ public class Reserva {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reserva reserva = (Reserva) o;
-        return id.equals(reserva.id);
+        return Objects.equals(id, reserva.id);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Sede getSedeDeLocacao() {
+        return sedeDeLocacao;
+    }
+
+    public void setSedeDeLocacao(Sede sedeDeLocacao) {
+        this.sedeDeLocacao = sedeDeLocacao;
+    }
+
+    public Sede getSedeDeDevolucao() {
+        return sedeDeDevolucao;
+    }
+
+    public void setSedeDeDevolucao(Sede sedeDeDevolucao) {
+        this.sedeDeDevolucao = sedeDeDevolucao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        if(cliente.verifSeClienteTemReserva()) {
+            throw new IllegalArgumentException();
+        }else if(cliente.verifValidadeCnh()){
+            throw new IllegalArgumentException();
+        }
+        else {
+            this.cliente = cliente;
+            cliente.addHistReserva(this);
+        }
+    }
+
+    public Carro getCarro() {
+        return carro;
+    }
+
+    public void setCarro(Carro carro) {
+        if(!carro.getSituacao().equals(SituacaoCarro.alugado)){
+            this.carro = carro;
+        } else{
+            throw new IllegalStateException();
+        }
+
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }
 

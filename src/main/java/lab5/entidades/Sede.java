@@ -2,12 +2,10 @@ package lab5.entidades;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-public class Sede {
+public class Sede implements EntidadeBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -66,7 +64,15 @@ public class Sede {
     public void setMultaPorEntregaEmOutroPt(BigDecimal multaPorEntregaEmOutroPt) {
         this.multaPorEntregaEmOutroPt = multaPorEntregaEmOutroPt;
     }
-
+    public List<Reserva> recuperarReservasNaofinalizadas (){
+        List <Reserva> reservas = new LinkedList<>();
+        for (Reserva r : sedesDeLocacao) {
+            if(!r.getSituacaoReserva().equals(SituacaoReserva.finalizada)){
+                reservas.add(r);
+        }
+    }
+        return reservas;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,5 +84,14 @@ public class Sede {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }

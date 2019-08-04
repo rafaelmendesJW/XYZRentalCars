@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Cliente {
+public class Cliente implements EntidadeBase {
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
@@ -63,7 +63,7 @@ public class Cliente {
 
     public boolean verifSeClienteTemReserva (){
         for (Reserva reserva : historicoReservas) {
-            if(reserva.getSituacaoReserva() == SituacaoReserva.ativa){
+            if(reserva.getSituacaoReserva() != SituacaoReserva.finalizada){
                 return true;
             }
         }
@@ -84,8 +84,17 @@ public class Cliente {
         return id.equals(cliente.id);
     }
 
+    public boolean addHistReserva(Reserva reserva) {
+        return historicoReservas.add(reserva);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }

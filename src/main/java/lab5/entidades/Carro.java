@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-public class Carro {
+public class Carro implements EntidadeBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,8 +14,7 @@ public class Carro {
     private Short ano;
     private BigDecimal quilometragem;
     private String descricao;
-    @ManyToOne
-    @JoinColumn (name = "id_classe", nullable = true)
+    @Enumerated (EnumType.STRING)
     private ClassesDeCarro classe;
     @ManyToOne
     @JoinColumn (name = "id_sede_origem", nullable = false)
@@ -25,9 +24,66 @@ public class Carro {
     private Sede localizacaoAtual;
     @Enumerated (EnumType.STRING)
     private SituacaoCarro situacao;
+    private BigDecimal valorDiarias;
+
+    public BigDecimal getValorDiarias() {
+        return valorDiarias;
+    }
+
+    public void setValorDiarias(BigDecimal valorDiarias) {
+        this.valorDiarias = valorDiarias;
+    }
 
     public String getPlaca() {
         return placa;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setAno(Short ano) {
+        this.ano = ano;
+    }
+
+    public ClassesDeCarro getClasse() {
+        return classe;
+    }
+
+    public void setClasse(ClassesDeCarro classe) {
+        this.classe = classe;
+    }
+
+    public Sede getSedeOrigem() {
+        return sedeOrigem;
+    }
+
+    public void setSedeOrigem(Sede sedeOrigem) {
+        this.sedeOrigem = sedeOrigem;
+    }
+
+    public Sede getLocalizacaoAtual() {
+        return localizacaoAtual;
+    }
+
+    public void setLocalizacaoAtual(Sede localizacaoAtual) {
+        this.localizacaoAtual = localizacaoAtual;
+    }
+
+    public SituacaoCarro getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(SituacaoCarro situacao) {
+        this.situacao = situacao;
     }
 
     /*public void setPlaca(String placa) {
@@ -88,5 +144,10 @@ public class Carro {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }
