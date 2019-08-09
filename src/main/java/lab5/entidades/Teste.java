@@ -154,6 +154,8 @@ public class Teste {
         carro5.setValorDiarias(new BigDecimal(150));
 
         Cliente c1 = new Cliente();
+        c1.setCnh("2324252");
+        c1.setValidadeCnh(LocalDate.now().plusMonths(10));
 
         Reserva reserva1 = new Reserva();
         reserva1.setCarro(carro5);
@@ -172,6 +174,9 @@ public class Teste {
         sede2.setNome("MaxAluguel");
 
         Cliente c1 = new Cliente();
+        c1.setCnh("2324252");
+        c1.setValidadeCnh(LocalDate.now().plusMonths(10));
+
 
         Carro carro5 = new Carro();
         carro5.setClasse(ClassesDeCarro.medio);
@@ -238,7 +243,7 @@ public class Teste {
         reserva1.setId(3);
         Assert.assertNotNull(reserva3);
     }
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void deveAtualizardadosdahabilitaçãodocliente (){
         //teste6
         Cliente c2 = new Cliente();
