@@ -1,12 +1,13 @@
-package lab5.entidades;
+package lab5.repositorios;
 
 import lab5.Util.MFactory;
+import lab5.entidades.Sede;
 
 import javax.persistence.EntityManager;
 
 public class RepositorioSede {
     EntityManager em = MFactory.getEntityManager();
-    DaoGenerico <Sede> dg;
+    DaoGenerico<Sede> dg;
     public RepositorioSede(EntityManager em) {
         this.em = em;
         dg = new DaoGenerico <Sede> (em);

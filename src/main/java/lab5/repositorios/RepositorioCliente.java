@@ -1,12 +1,12 @@
-package lab5.entidades;
+package lab5.repositorios;
 
-import lab5.Util.MFactory;
+import lab5.entidades.Cliente;
 
 import javax.persistence.EntityManager;
 
 public class RepositorioCliente {
     EntityManager em;
-    DaoGenerico <Cliente> dg;
+    DaoGenerico<Cliente> dg;
 
     public RepositorioCliente(EntityManager em){
         this.em = em;

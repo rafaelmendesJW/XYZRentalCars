@@ -1,6 +1,8 @@
-package lab5.entidades;
+package lab5.repositorios;
 
 import lab5.Util.MFactory;
+import lab5.entidades.Carro;
+import lab5.entidades.ClassesDeCarro;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class RepositorioCarro {
     EntityManager em = MFactory.getEntityManager();
-    DaoGenerico <Carro> dg;
+    DaoGenerico<Carro> dg;
 
     public RepositorioCarro(EntityManager em) {
         this.em = em;

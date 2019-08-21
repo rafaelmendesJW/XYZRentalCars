@@ -1,6 +1,7 @@
-package lab5.entidades;
+package lab5.repositorios;
 
 import lab5.Util.MFactory;
+import lab5.entidades.EntidadeBase;
 
 import javax.persistence.EntityManager;
 

@@ -1,5 +1,9 @@
 package lab5.entidades;
 
+import lab5.repositorios.RepositorioCarro;
+import lab5.repositorios.RepositorioCliente;
+import lab5.repositorios.RepositorioReserva;
+import lab5.repositorios.RepositorioSede;
 import org.junit.*;
 
 import javax.persistence.EntityManager;
@@ -181,7 +185,7 @@ public class Teste {
         Carro carro5 = new Carro();
         carro5.setClasse(ClassesDeCarro.medio);
         carro5.setSedeOrigem(sede2);
-        carro5.setSituacao(SituacaoCarro.disponivel);
+        carro5.setSituacao(SituacaoCarro.alugado);
         carro5.setValorDiarias(new BigDecimal(150));
 
         Carro carro6 = new Carro();
@@ -212,6 +216,8 @@ public class Teste {
         sede2.setNome("MaxAluguel");
 
         Cliente c1 = new Cliente();
+        c1.setCnh("2324252");
+        c1.setValidadeCnh(LocalDate.now().plusMonths(10));
 
         Carro carro5 = new Carro();
         carro5.setClasse(ClassesDeCarro.medio);
@@ -248,12 +254,14 @@ public class Teste {
         //teste6
         Cliente c2 = new Cliente();
         c2.setCnh("2324252");
+        c2.setValidadeCnh(LocalDate.now().plusMonths(10));
 
         rcliente.salvarAtualizar(c2);
         manager.flush();
 
         Cliente c3 = rcliente.busca(c2.getId());
         c3.setCnh("827328");
+        c3.setValidadeCnh(LocalDate.now().plusMonths(10));
         rcliente.salvarAtualizar(c3);
         manager.flush();
 
@@ -267,6 +275,9 @@ public class Teste {
     public void Nãodevealugarumcarronummesmointervalodetempo(){
         //teste7
         Cliente c2 = new Cliente();
+        c2.setCnh("2324252");
+        c2.setValidadeCnh(LocalDate.now().plusMonths(10));
+
 
         Sede sede2 = new Sede();
         sede2.setEndereco("Av jeronimo de albuquerque");
