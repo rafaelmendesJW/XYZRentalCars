@@ -249,7 +249,7 @@ public class Teste {
         reserva1.setId(3);
         Assert.assertNotNull(reserva3);
     }
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void deveAtualizardadosdahabilitaçãodocliente (){
         //teste6
         Cliente c2 = new Cliente();
@@ -493,5 +493,12 @@ public class Teste {
         valorTotal = new BigDecimal(reserva6.getQtdDeDiarias()) .multiply(carro8.getValorDiarias());
         Assert.assertEquals(valorTotal,reserva6.getValorTotal());
     }
+    public void devesaberqualclassedecarrotevemenosreserva(){
+    //teste 13
+    }
+    public void deverecuperartodasasreservasfinalizadasnumasedesedededevoluçãoemumdeterminadoperíodo(){
+     //teste14
+    }
+
 
 }
